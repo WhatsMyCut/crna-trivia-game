@@ -30,7 +30,7 @@ const errorLink = onError(({ graphQLErrors, networkError, operation }) => {
 
 const authLink = setContext(async (_, context) => {
   const headers = { ...context.headers };
-  const token = await RetrieveData('EARTH_GUARDIANS_TOKEN'); // retrieve from asyncstorage
+  const token = await RetrieveData('AUTH_TOKEN'); // retrieve from asyncstorage
   if (token) {
     headers.authorization = `Bearer ${token}`;
   }
