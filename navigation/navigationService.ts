@@ -8,7 +8,7 @@ function setTopLevelNavigator(navigatorRef) {
 }
 
 function navigate(routeName, params) {
-  console.log('HERER', routeName, params);
+  // console.log('HERER', routeName, params);
   navigator.dispatch(
     NavigationActions.navigate({
       routeName,
