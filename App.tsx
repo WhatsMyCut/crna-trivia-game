@@ -5,7 +5,7 @@ import { StoreProvider } from './store/Store';
 import { ApolloProvider } from 'react-apollo';
 import AppNavigator from './navigation/AppNavigator';
 import NavigationService from './navigation/navigationService';
-import client from './Apollo';
+import Client from './Apollo';
 
 export interface IProps {};
 export interface IState {
@@ -38,7 +38,7 @@ export default class App extends Component <IProps, IState> {
     }
     return (
       <StoreProvider>
-        <ApolloProvider client={client}>
+        <ApolloProvider client={Client}>
           <AppNavigator
             ref={navigatorRef => {
               NavigationService.setTopLevelNavigator(navigatorRef);
