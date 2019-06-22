@@ -60,6 +60,7 @@ export const Styles = ScaledSheet.create({
     fontWeight: '700',
     textAlign: 'center',
     paddingTop: 25,
+    height: 'auto',
   },
 
 

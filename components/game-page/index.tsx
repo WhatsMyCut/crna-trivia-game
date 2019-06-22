@@ -11,7 +11,6 @@ import { Styles } from '../../assets/styles/Styles';
 //import Home from './Home';
 import navigationService from '../../navigation/navigationService';
 import GameNav from '../game-nav';
-import {RetrieveData, StoreData} from '../../store/AsyncStore';
 import Colors from '../../assets/styles/Colors';
 const styles = { ...Styles, ...{
 
@@ -20,11 +19,22 @@ export interface IProps {
   navigation: any;
 }
 
+export interface IQuestion {
+  category: string;
+  correct_answer: string;
+  difficulty: string;
+  incorrect_answers: [string];
+  question: string;
+  type: string;
+  given_answer?: string;
+}
+
 export interface IState {
-  questions: any;
-  x: number;
-  y: number;
-  isLoaded: boolean;
+  questions: [IQuestion];
+  currentQuestion?: IQuestion;
+  x?: number;
+  y?: number;
+  isLoaded?: boolean;
 }
 
 export const getQuestionsFromApiAsync = () => {
@@ -42,7 +52,9 @@ export const getQuestionsFromApiAsync = () => {
 export default class GamePage extends Component<IProps, IState> {
   constructor(props: IProps, iState: IState) {
     super (props);
-    this.state = {...iState, ...{x: 1, y: 1, isLoaded: false,}};
+    this.state = {...iState, ...{x: 1, y: 0, isLoaded: false,}};
+    this.onPressAnswerTrue.bind(this);
+    this.onPressAnswerFalse.bind(this);
   }
 
   async componentDidMount() {
@@ -51,15 +63,23 @@ export default class GamePage extends Component<IProps, IState> {
       console.log('qs', result)
       if (result.response_code === 0) {
         const questions = result.results;
+        const currentQuestion = questions[0]
         const y = questions.length;
-        this.setState({questions, y, isLoaded: true});
+        const x = 1;
+        this.setState({questions, currentQuestion, x, y, isLoaded: true});
       } else {
+        const currentQuestion: IQuestion = {
+          "category": "Error",
+          "question": "Sorry there was a network error.",
+          "type": null,
+          "difficulty": null,
+          "incorrect_answers": null,
+          "correct_answer": null,
+        }
         this.setState({
-          questions: [{
-            "category": "Error",
-            "question": "Sorry there was a network error.",
-            "type": null,
-          }],
+          'questions': [currentQuestion],
+          currentQuestion,
+          x: 1,
           y: 1,
           isLoaded: true,
         })
@@ -67,14 +87,24 @@ export default class GamePage extends Component<IProps, IState> {
     }
   }
 
+  setNewState = (state: IState) => {
+    this.state = state;
+  }
+
   onPressAnswerTrue() {
-    console.log('onPressAnswerTrue');
-    const { questions, x } = this.state;
-    const cQ = questions[x];
-    if (cQ.correctAnswers[0] === 'True') {
-      console.log('correct!')
+    console.log('onPressAnswerTrue', this);
+    const { questions, currentQuestion, x, y } = this.state
+    currentQuestion.given_answer = "True";
+    if (x <= y) {
+      const nX = x+1;
+      this.setState({
+        currentQuestion: questions[nX],
+        x: nX,
+      });
+    } else {
+      this.setState({currentQuestion: null})
+      this.props.navigation.navigate('ResultsPage')
     }
-    this.setState({x: x+1});
   }
   onPressAnswerFalse() {
     console.log('onPressAnswerFalse');
@@ -99,7 +129,7 @@ export default class GamePage extends Component<IProps, IState> {
         <View style={[styles.componentContainer]}>
           <View style={[styles.buttonContainerTrue]}>
             <Button
-              onPress={this.onPressAnswerTrue}
+              onPress={() => this.onPressAnswerTrue()}
               title="True"
               color={Colors.white}
             />
@@ -126,7 +156,7 @@ export default class GamePage extends Component<IProps, IState> {
             { controls }
           </View>
           <Text style={[styles.callToAction]}>
-            {x - 1} of {y}
+            {x} of {y}
           </Text>
         </View>
       </SafeAreaView>
