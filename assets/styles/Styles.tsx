@@ -54,14 +54,21 @@ export const Styles = ScaledSheet.create({
 
   title: {
     flex: 1,
+    fontFamily: 'Proxima Nova Bold',
     fontSize: moderateScale(28),
     color: Colors.black,
     fontWeight: '700',
     textAlign: 'center',
+    paddingTop: 25,
+  },
+
+
+  questionTitle: {
   },
 
   welcome: {
     flex: 1,
+    fontFamily: 'Proxima Nova',
     fontSize: moderateScale(24),
     color: Colors.mediumGray,
     fontWeight: 'normal',
@@ -71,6 +78,7 @@ export const Styles = ScaledSheet.create({
 
   callToAction: {
     flex: 1,
+    fontFamily: 'Proxima Nova Bold',
     fontSize: moderateScale(24),
     color: Colors.darkGray,
     fontWeight: 'bold',
@@ -88,6 +96,29 @@ export const Styles = ScaledSheet.create({
     marginVertical: 20,
     paddingHorizontal: 10
   },
+
+  buttonContainerTrue: {
+    backgroundColor: 'green',
+    minWidth: 130,
+    height: 50,
+    borderRadius: 5,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginVertical: 20,
+    paddingHorizontal: 10
+  },
+
+  buttonContainerFalse: {
+    backgroundColor: 'darkred',
+    minWidth: 130,
+    height: 50,
+    borderRadius: 5,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginVertical: 20,
+    paddingHorizontal: 10
+  },
+
   coverScreen: {
     position: 'absolute',
     top: 0,
@@ -112,6 +143,8 @@ export const Styles = ScaledSheet.create({
     width: CARD_WIDTH,
     borderColor: Colors.tintColor,
     borderWidth: 1,
+    fontSize: moderateScale(22),
+    padding: 20
   },
   card: {
     height: CARD_HEIGHT,
@@ -186,27 +219,19 @@ export const Styles = ScaledSheet.create({
   },
   headerContainer: {
     flex: 1,
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
     alignContent: 'center',
     alignItems: 'center',
     paddingVertical: 10,
     height: 80,
+    width: '100%',
   },
   headerText: {
-    color: Colors.white,
+    color: Colors.black,
     fontSize: moderateScale(24),
     fontFamily: 'Proxima Nova Bold',
     textAlign: 'center',
-  },
-  smallWhiteText: {
-    color: Colors.white,
-    marginBottom: 10,
-    fontSize: moderateScale(12),
-  },
-  smallGreyText: {
-    color: Colors.lightGray,
-    marginBottom: 10,
-    fontSize: moderateScale(12),
+    width: '80%',
   },
   centerAll: {
     justifyContent: 'center',
@@ -222,38 +247,6 @@ export const Styles = ScaledSheet.create({
   },
   padded: {
     padding: defaults.padding
-  },
-  splashLogoContainer: {
-    flex: 1,
-    alignSelf: 'center',
-    marginTop: 35
-  },
-  textWhite: {
-    fontFamily: 'Proxima Nova',
-    color: Colors.white,
-    fontSize: moderateScale(14),
-    fontWeight: 'normal'
-  },
-  textWhiteBold: {
-    fontFamily: 'Proxima Nova Bold',
-    color: Colors.white,
-    fontSize: moderateScale(14),
-    fontWeight: 'bold'
-  },
-  textWhite18B: {
-    color: Colors.white,
-    fontSize: moderateScale(18),
-    fontWeight: 'bold'
-  },
-  textGrey18B: {
-    color: Colors.darkGray,
-    fontSize: moderateScale(18),
-    fontWeight: 'bold'
-  },
-  largeWhiteTextBold: {
-    color: Colors.white,
-    fontSize: moderateScale(28),
-    fontWeight: 'bold'
   },
   smallTextShadow: {
     textShadowColor: Colors.black,
@@ -280,18 +273,19 @@ export const Styles = ScaledSheet.create({
     },
   },
   componentContainer: {
-    flexDirection: 'column',
-    justifyContent: 'center'
-  },
-  noDivider: {
-    borderBottomColor: 'transparent',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    width: '100%',
+
   },
   topNav: {
     flex: 1,
-    justifyContent: 'flex-start',
+    justifyContent: 'space-between',
     maxHeight: 50,
     paddingHorizontal: defaults.paddingHorizontal,
-    zIndex:1
+    zIndex:1,
+    width: '100%',
+    color: Colors.black,
   },
   swipeButton: {
     padding: 20,
