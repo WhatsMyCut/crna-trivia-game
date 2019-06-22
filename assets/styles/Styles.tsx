@@ -107,6 +107,12 @@ export const Styles = ScaledSheet.create({
     textAlign: 'center',
   },
   // Game Cards
+  gameBox: {
+    height: CARD_HEIGHT,
+    width: CARD_WIDTH,
+    borderColor: Colors.tintColor,
+    borderWidth: 1,
+  },
   card: {
     height: CARD_HEIGHT,
     width: CARD_WIDTH,

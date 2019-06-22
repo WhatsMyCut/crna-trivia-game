@@ -8,7 +8,7 @@ import {
 import { Styles } from '../../assets/styles/Styles';
 //import { StoreConsumer } from '../../store/Store';
 //import Home from './Home';
-//import navigationService from '../../navigation/navigationService';
+import navigationService from '../../navigation/navigationService';
 import {RetrieveData, StoreData} from '../../store/AsyncStore';
 import Colors from '../../assets/styles/Colors';
 const styles = { ...Styles, ...{
@@ -19,21 +19,27 @@ export interface IProps {
 }
 
 export default class LandingPage extends Component<IProps> {
+  constructor(props: IProps) {
+    super (props);
+  }
   async componentDidMount() {
     this.props.navigation.navigate('AuthLoading');
   }
 
   onPressBegin(ev: NativeSyntheticEvent<NativeTouchEvent>) {
-    console.log('Begin Game', ev);
+    // console.log('onPressBegin', ev);
+    navigationService.navigate('Game', {});
+    // const { navigation } = this.props;
+    // navigation.navigate('Game');
   }
   render() {
     return (
-      <SafeAreaView style={[styles.container, styles.coverScreen, styles.centerText]}>
+      <SafeAreaView style={[styles.container, styles.coverScreen, styles.centerAll]}>
         <View style={[styles.safeArea, styles.container]}>
           <Text style={[styles.title]}>
             Welcome to the Trivia Challenge!
           </Text>
-          <Text style={[styles.welcome, styles.container]}>
+          <Text style={[styles.welcome, styles.container, styles.centerText, { paddingHorizontal: 20, }]}>
             You will be presented with 10 True or False questions.
           </Text>
           <Text style={[styles.callToAction]}>
