@@ -14,4 +14,6 @@ export default Colors = {
   mediumGray: '#666',
   darkGray: '#333',
   white: '#fff',
+  green: 'green',
+  red: 'red',
 };
