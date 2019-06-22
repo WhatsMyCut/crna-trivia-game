@@ -139,10 +139,12 @@ export const Styles = ScaledSheet.create({
   },
   // Game Cards
   gameBox: {
-    height: CARD_HEIGHT,
+    minHeight: CARD_HEIGHT,
+    height: 'auto',
     width: CARD_WIDTH,
     borderColor: Colors.tintColor,
     borderWidth: 1,
+    borderRadius: defaults.borderRadius,
     fontSize: moderateScale(22),
     padding: 20
   },

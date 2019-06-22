@@ -67,15 +67,14 @@ export default class GamePage extends Component<IProps, IState> {
     }
   }
 
-
-  onPressBegin(ev: NativeSyntheticEvent<NativeTouchEvent>) {
-    // console.log('onPressBegin', ev);
-    navigationService.navigate('Game', {});
-    // const { navigation } = this.props;
-    // navigation.navigate('Game');
-  }
   onPressAnswerTrue() {
     console.log('onPressAnswerTrue');
+    const { questions, x } = this.state;
+    const cQ = questions[x];
+    if (cQ.correctAnswers[0] === 'True') {
+      console.log('correct!')
+    }
+    this.setState({x: x+1});
   }
   onPressAnswerFalse() {
     console.log('onPressAnswerFalse');
