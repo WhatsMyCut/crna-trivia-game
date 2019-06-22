@@ -8,7 +8,7 @@ import { onError } from 'apollo-link-error';
 import { RetrieveData } from './store/AsyncStore';
 
 const httpLink = new HttpLink({
-  uri: `https://eg-production.herokuapp.com/`
+  uri: `https://opentdb.com/api.php?amount=10&difficulty=hard&type=boolean`
   // uri: `http://localhost:4000`
 });
 
@@ -44,7 +44,7 @@ const authLink = setContext(async (_, context) => {
 // For info on how to use navigation service
 // https://reactnavigation.org/docs/en/navigating-without-navigation-prop.html#docsNav
 
-export default client = new ApolloClient({
+export default Client = new ApolloClient({
   ssrForceFetchDelay: 100,
   link: ApolloLink.from([authLink, errorLink, httpLink]),
   cache: new InMemoryCache(),
