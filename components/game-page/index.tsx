@@ -12,6 +12,7 @@ import { Styles } from '../../assets/styles/Styles';
 import navigationService from '../../navigation/navigationService';
 import GameNav from '../game-nav';
 import Colors from '../../assets/styles/Colors';
+import { StoreData, RemoveData } from '../../store/AsyncStore';
 const styles = { ...Styles, ...{
 
 }};
@@ -62,11 +63,13 @@ export default class GamePage extends Component<IProps, IState> {
     if (result) {
       console.log('qs', result)
       if (result.response_code === 0) {
+        RemoveData('questions');
         const questions = result.results;
         const currentQuestion = questions[0]
         const y = questions.length;
         const x = 0;
         this.setState({questions, currentQuestion, x, y, isLoaded: true});
+        StoreData('questions', questions);
       } else {
         const currentQuestion: IQuestion = {
           "category": "Error",
@@ -102,6 +105,7 @@ export default class GamePage extends Component<IProps, IState> {
     x++;
     if (x === y) {
       console.log('HRER', x, y, (x === y));
+      StoreData('questions', questions);
       navigationService.navigate('ResultsPage', {})
     } else {
       this.setState({
