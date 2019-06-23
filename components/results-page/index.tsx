@@ -3,10 +3,13 @@ import { Styles } from '../../assets/styles/Styles';
 import {
   SafeAreaView,
   View,
+  ScrollView,
   TouchableOpacity,
   Text,
   ActivityIndicator
 } from 'react-native';
+import { IQuestion } from '../../models/IQuestion';
+import Result from './Result';
 import { Ionicons } from '@expo/vector-icons';
 import { RetrieveData } from '../../store/AsyncStore';
 const styles = { ...Styles, ...{
@@ -18,17 +21,6 @@ export interface IState {
   questions?: any;
   isLoaded?: boolean;
 };
-
-export interface IQuestion {
-  category: string;
-  correct_answer: string;
-  difficulty: string;
-  incorrect_answers: [string];
-  question: string;
-  type: string;
-  given_answer?: string;
-}
-
 
 export default class ResultsPage extends Component<IProps, IState> {
   constructor(props: IProps, state: IState) {
@@ -43,22 +35,37 @@ export default class ResultsPage extends Component<IProps, IState> {
     .then(questions =>this.setState({questions, isLoaded: true,}));
   }
 
+  renderQuestion(x: IQuestion, i: number) {
+    return new Result(x, i).render();
+  }
+
   render () {
     const { isLoaded } = this.state;
     if (!isLoaded) {
       return <ActivityIndicator size="large" color="#0000ff" />;
     }
     const { questions } = this.state;
-    console.log('RESULTS: ', questions);
+    const numQs = questions.length;
+    const correct = questions.filter((x: IQuestion) => {
+      return (x.correct_answer === x.given_answer);
+    }).length;
+    const results = questions.map((value: IQuestion, index: number) => this.renderQuestion(value, index))
+    console.log('RESULTS: ', results);
     return (
       <SafeAreaView style={[styles.container, styles.coverScreen, styles.centerAll]}>
-        <View style={[styles.topNav]}>
+        <ScrollView contentContainerStyle={[styles.safeArea, styles.container]}>
           <View style={[styles.headerContainer]}>
             <Text style={[styles.headerText]}>
-              {questions.length}
+              You Scored
+            </Text>
+            <Text style={[styles.headerText]}>
+              { correct } / {numQs}
             </Text>
           </View>
-        </View>
+          <View style={[styles.container]}>
+            { results }
+          </View>
+        </ScrollView>
       </SafeAreaView>
 
     );
