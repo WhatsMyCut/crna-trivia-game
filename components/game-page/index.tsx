@@ -13,6 +13,7 @@ import navigationService from '../../navigation/navigationService';
 import GameNav from '../game-nav';
 import Colors from '../../assets/styles/Colors';
 import { StoreData, RemoveData } from '../../store/AsyncStore';
+import { IQuestion } from '../../models/IQuestion';
 const styles = { ...Styles, ...{
 
 }};
@@ -20,15 +21,6 @@ export interface IProps {
   navigation?: any;
 }
 
-export interface IQuestion {
-  category: string;
-  correct_answer: string;
-  difficulty: string;
-  incorrect_answers: [string];
-  question: string;
-  type: string;
-  given_answer?: string;
-}
 
 export interface IState {
   questions?: [IQuestion];
@@ -39,7 +31,7 @@ export interface IState {
 }
 
 export const getQuestionsFromApiAsync = () => {
-  console.log('getQuestionsFromApiAsync');
+  // console.log('getQuestionsFromApiAsync');
   return fetch('https://opentdb.com/api.php?amount=10&difficulty=medium&type=boolean')
     .then((response) => response.json())
     .then((responseJson) => {
@@ -61,7 +53,7 @@ export default class GamePage extends Component<IProps, IState> {
   async componentDidMount() {
     const result = await getQuestionsFromApiAsync();
     if (result) {
-      console.log('qs', result)
+      // console.log('qs', result)
       if (result.response_code === 0) {
         RemoveData('questions');
         const questions = result.results;
@@ -98,13 +90,11 @@ export default class GamePage extends Component<IProps, IState> {
     this.state = state;
   }
 
-  onPressAnswerTrue() {
-    console.log('onPressAnswerTrue', this);
-    let { questions, currentQuestion, x, y } = this.state
-    currentQuestion.given_answer = "True";
+  nextQuestion() {
+    let { questions, x, y } = this.state
     x++;
     if (x === y) {
-      console.log('HRER', x, y, (x === y));
+      // console.log('HRER', x, y, (x === y));
       StoreData('questions', questions);
       navigationService.navigate('ResultsPage', {})
     } else {
@@ -114,9 +104,21 @@ export default class GamePage extends Component<IProps, IState> {
       });
     }
   }
-  onPressAnswerFalse() {
-    console.log('onPressAnswerFalse');
+
+  onPressAnswerTrue() {
+    // console.log('onPressAnswerTrue', this);
+    const { currentQuestion } = this.state
+    currentQuestion.given_answer = "True";
+    this.nextQuestion();
   }
+
+  onPressAnswerFalse() {
+    // console.log('onPressAnswerFalse');
+    let { currentQuestion } = this.state
+    currentQuestion.given_answer = "False";
+    this.nextQuestion();
+  }
+
   render() {
     const {x, y, isLoaded} = this.state;
     let content, category, controls;
@@ -152,7 +154,7 @@ export default class GamePage extends Component<IProps, IState> {
           </View>
           <View style={[styles.buttonContainerFalse]}>
             <Button
-              onPress={this.onPressAnswerFalse}
+              onPress={() => this.onPressAnswerFalse()}
               title="False"
               color={Colors.white}
               />
