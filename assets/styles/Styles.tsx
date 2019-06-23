@@ -35,8 +35,8 @@ defaults.fullWidth = SCREEN_WIDTH;
 export const Styles = ScaledSheet.create({
   // Main shared styles
   container: {
-    display: 'flex',
     flex: 1,
+    flexBasis: 'auto',
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -139,6 +139,22 @@ export const Styles = ScaledSheet.create({
     textAlign: 'center',
   },
   // Game Cards
+  navHeader: {
+    flex: 1,
+    flexBasis: 'auto',
+    alignItems: 'center',
+    justifyContent: 'center',
+    top: -15,
+  },
+  navHeaderText: {
+    flex: 1,
+    color: Colors.black,
+    fontSize: moderateScale(24),
+    fontFamily: 'Proxima Nova Bold',
+    textAlign: 'center',
+    width: '80%',
+    minHeight: 50,
+  },
   gameBox: {
     minHeight: CARD_HEIGHT,
     height: 'auto',
@@ -148,6 +164,12 @@ export const Styles = ScaledSheet.create({
     borderRadius: defaults.borderRadius,
     fontSize: moderateScale(22),
     padding: 20
+  },
+  result: {
+    textAlign: 'left',
+    fontWeight: '400',
+    fontFamily: 'Proxima Nova',
+    width: '100%',
   },
   card: {
     height: CARD_HEIGHT,
@@ -159,82 +181,23 @@ export const Styles = ScaledSheet.create({
     borderRadius: defaults.borderRadius,
     backgroundColor: Colors.white
   },
-  cardHeaderText: {
-    color: Colors.white,
-    height: 30,
-    width: 200,
-    textAlign: 'left',
-    marginVertical: 20,
-    borderColor: 'gray',
-    borderBottomWidth: 1,
-  },
-  cardPlaceholderText: {
-    fontSize: moderateScale(22),
-    fontWeight: 'bold',
-    fontFamily: 'Proxima Nova Bold',
-    color: Colors.lightGray,
-  },
-  indexGradient: {
-    position: 'absolute',
-    borderRadius: defaults.borderRadius,
-    width: CARD_WIDTH,
-  },
-  cardImage: {
-    flex: 1,
-    height: null,
-    width: null,
-    resizeMode: "cover",
-    borderRadius: defaults.borderRadius
-  },
-  badgeImage: {
-    flex: 1,
-    height: 100,
-    resizeMode: 'contain',
-    marginHorizontal: 10
-  },
-  // Info Views
-  greyCard: {
-    flex: 1,
-    backgroundColor: Colors.darkGray,
-  },
-  greyCardHeader: {
-    backgroundColor: Colors.darkGray,
-    borderBottomWidth: 0,
-    shadowColor: 'transparent',
-    shadowRadius: 0,
-    shadowOffset: {
-      width: 0,
-      height: 0,
-    },
-  },
-  containerGrey: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: Colors.darkGray,
-  },
-  containerTitle: {
-    color: Colors.white,
-    fontWeight: '700',
-    fontSize: moderateScale(24),
-    fontVariant: [ 'small-caps' ],
-    marginBottom: 15,
-  },
   headerContainer: {
     flex: 1,
     justifyContent: 'flex-start',
     alignContent: 'center',
     alignItems: 'center',
     paddingVertical: 10,
-    height: 80,
-    width: '100%',
+    borderColor: 'red',
+    borderWidth: 1,
   },
   headerText: {
+    flex: 1,
     color: Colors.black,
     fontSize: moderateScale(24),
     fontFamily: 'Proxima Nova Bold',
     textAlign: 'center',
     width: '80%',
+    minHeight: 50,
   },
   centerAll: {
     justifyContent: 'center',

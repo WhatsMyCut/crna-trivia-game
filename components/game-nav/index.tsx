@@ -20,8 +20,8 @@ export default class GamePage extends Component<IProps, IState> {
           onPress={() => this.props.navigation.navigate('AuthLoading', {})}>
           <Ionicons name="ios-arrow-round-back" refs={{}} size={42} color="#ccc" />
         </TouchableOpacity>
-        <View style={[styles.headerContainer]}>
-          <Text style={[styles.headerText]}>Trivia Challenge</Text>
+        <View style={[styles.navHeader]}>
+          <Text style={[styles.navHeaderText]}>Trivia Challenge</Text>
         </View>
       </View>
 
