@@ -7,10 +7,6 @@ import GamePage from '../components/game-page';
 import ErrorBoundary from '../components/ErrorBoundary';
 
 export default class GameScreen extends BaseScreen {
-  static navigationOptions = {
-    header: null,
-  };
-
   render() {
     return (
       <StoreConsumer>

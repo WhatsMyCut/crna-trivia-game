@@ -16,7 +16,7 @@ const styles = { ...Styles, ...{
 
 }};
 export interface IProps {
-  navigation: any;
+  navigation?: any;
 }
 
 export interface IQuestion {
@@ -30,7 +30,7 @@ export interface IQuestion {
 }
 
 export interface IState {
-  questions: [IQuestion];
+  questions?: [IQuestion];
   currentQuestion?: IQuestion;
   x?: number;
   y?: number;
@@ -52,7 +52,7 @@ export const getQuestionsFromApiAsync = () => {
 export default class GamePage extends Component<IProps, IState> {
   constructor(props: IProps, iState: IState) {
     super (props);
-    this.state = {...iState, ...{x: 1, y: 0, isLoaded: false,}};
+    this.state = {...iState, ...{x: 0, y: 1, isLoaded: false,}};
     this.onPressAnswerTrue.bind(this);
     this.onPressAnswerFalse.bind(this);
   }
@@ -65,7 +65,7 @@ export default class GamePage extends Component<IProps, IState> {
         const questions = result.results;
         const currentQuestion = questions[0]
         const y = questions.length;
-        const x = 1;
+        const x = 0;
         this.setState({questions, currentQuestion, x, y, isLoaded: true});
       } else {
         const currentQuestion: IQuestion = {
@@ -79,12 +79,16 @@ export default class GamePage extends Component<IProps, IState> {
         this.setState({
           'questions': [currentQuestion],
           currentQuestion,
-          x: 1,
+          x: 0,
           y: 1,
           isLoaded: true,
         })
       }
     }
+  }
+
+  componentWillUnmount() {
+    this.state = null;
   }
 
   setNewState = (state: IState) => {
@@ -93,17 +97,17 @@ export default class GamePage extends Component<IProps, IState> {
 
   onPressAnswerTrue() {
     console.log('onPressAnswerTrue', this);
-    const { questions, currentQuestion, x, y } = this.state
+    let { questions, currentQuestion, x, y } = this.state
     currentQuestion.given_answer = "True";
-    if (x <= y) {
-      const nX = x+1;
-      this.setState({
-        currentQuestion: questions[nX],
-        x: nX,
-      });
+    x++;
+    if (x === y) {
+      console.log('HRER', x, y, (x === y));
+      navigationService.navigate('ResultsPage', {})
     } else {
-      this.setState({currentQuestion: null})
-      this.props.navigation.navigate('ResultsPage')
+      this.setState({
+        currentQuestion: questions[x],
+        x: x,
+      });
     }
   }
   onPressAnswerFalse() {
@@ -115,9 +119,17 @@ export default class GamePage extends Component<IProps, IState> {
     if (!isLoaded) {
       category = "Loading...";
       content = (<ActivityIndicator size="large" color="#0000ff" />);
-    } else {
+    } else if (x === y) {
+      category = "Calculating Results"
+      content = (
+        <View style={[styles.container, styles.componentContainer, styles.centerAll]}>
+          <Text style={[styles.headerText]}>Getting results.</Text>
+        </View>
+      );
+    }
+    else {
       const { questions } = this.state;
-      const currQ = questions[x-1];
+      const currQ = questions[x];
       category = currQ.category;
       const qText = entities.decode(currQ.question);
       content = (
@@ -156,7 +168,7 @@ export default class GamePage extends Component<IProps, IState> {
             { controls }
           </View>
           <Text style={[styles.callToAction]}>
-            {x} of {y}
+            {x+1} of {y}
           </Text>
         </View>
       </SafeAreaView>
