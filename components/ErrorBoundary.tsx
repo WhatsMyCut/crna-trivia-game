@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
-import { Text } from 'react-native';
+import { Text, SafeAreaView, View } from 'react-native';
+import { Styles } from '../assets/styles/Styles';
+const styles = { ...Styles, ...{
+
+}};
 export interface IProps {}
 export interface IState {
   hasError: boolean;
@@ -25,7 +29,11 @@ export default class ErrorBoundary extends Component<IProps, IState> {
     if (this.state.hasError) {
       // You can render any custom fallback UI
       return (
-        <Text>Something went wrong.</Text>
+        <SafeAreaView style={[styles.container, styles.coverScreen, styles.centerAll]}>
+          <View style={[styles.safeArea, styles.container, styles.error]}>
+            <Text style={[styles.centerText]}>Something went wrong.</Text>
+          </View>
+        </SafeAreaView>
       );
     }
     return this.props.children;
