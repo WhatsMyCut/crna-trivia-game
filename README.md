@@ -1,6 +1,6 @@
 # code-challenge-mike-taylor
 
-This is a code challenge for the G2i Group written by Mike Taylor on 6/21 - 6/23/2019
+This is a code challenge for the G2i Group written by Mike Taylor on 6/21 - 6/24/2019
 
 ## Quick Start
 
@@ -29,6 +29,12 @@ The codebase utilizes techniques and best practices I have been using most recen
 The `LandingPage` wireframe asks, 'Can you score 100%' but the `ResultsPage` wireframe only showed `[Correct] / [Total]`, so a percentage was added to display `[Correct] / [Total] [Percentage]%`
 
 While experimenting, it was discovered the API will take `easy | medium | hard` for the difficulty passed in the query. Things to improve: add slider to set difficulty level.
+
+The total hours for this project:
+- Friday 6/21: 8hrs - Initial app and component creation plus navigation workflow
+- Saturday 6/22: 2hrs - Game logic and state management
+- Sunday 6/23: 10hrs - UI Styling, Modal, Icons, Fonts, Gradients
+- Monday 6/24: 2 hrs - Documentation
 
 ### Local Data Store
 
