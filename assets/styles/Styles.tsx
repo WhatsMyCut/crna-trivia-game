@@ -42,14 +42,33 @@ export const Styles = ScaledSheet.create({
   },
 
   safeArea: {
+    flex: 1,
     width: SAFE_WIDTH,
-    height: '100%',
-    margin: 20,
+    height: CARD_HEIGHT,
+    padding: 20,
   },
 
   blackBG: {
     backgroundColor: Colors.black,
     color: Colors.white
+  },
+
+  topNav: {
+    flex: 1,
+    justifyContent: 'space-between',
+    maxHeight: 50,
+    paddingHorizontal: defaults.paddingHorizontal,
+    zIndex:1,
+    width: '100%',
+    color: Colors.black,
+  },
+
+  headerText: {
+    color: Colors.black,
+    fontSize: moderateScale(24),
+    fontFamily: 'Proxima Nova Bold',
+    textAlign: 'center',
+    width: '80%',
   },
 
   title: {
@@ -63,8 +82,11 @@ export const Styles = ScaledSheet.create({
     height: 'auto',
   },
 
-
   questionTitle: {
+    flex: 1,
+    alignItems: 'flex-start',
+    textAlign: 'left',
+    top: -15,
   },
 
   welcome: {
@@ -129,7 +151,7 @@ export const Styles = ScaledSheet.create({
   },
   coverAll: {
     width: SCREEN_WIDTH,
-    height: SCREEN_HEIGHT
+    height: SCREEN_HEIGHT - 50,
   },
   error: {
     color: 'red',
@@ -138,7 +160,55 @@ export const Styles = ScaledSheet.create({
     fontWeight: 'bold',
     textAlign: 'center',
   },
-  // Game Cards
+  iconContainer: {
+    height: 50,
+    width: 50,
+    padding: 4,
+    marginRight: 10,
+    borderWidth: 2,
+    borderColor: Colors.lightGray,
+    shadowColor: Colors.black,
+    shadowRadius: 2,
+    shadowOpacity: 0.8,
+    shadowOffset: {
+      width: 1,
+      height: 1
+    },
+  },
+
+  // Modal
+  modal:{
+    alignSelf: 'center',
+    width: SAFE_WIDTH,
+    padding: defaults.padding,
+    borderRadius: defaults.borderRadius,
+    backgroundColor: Colors.white,
+    borderColor: Colors.mediumGray,
+    shadowColor: Colors.black,
+    shadowRadius: 2,
+    shadowOpacity: 0.8,
+    shadowOffset: {
+      width: 1,
+      height: 1
+    },
+  },
+
+  modalText: {
+    padding: 15,
+    color: Colors.black,
+    fontSize: moderateScale(20),
+    fontFamily: 'Proxima Nova Bold',
+  },
+
+  modalTextSmall: {
+    padding: 15,
+    color: Colors.black,
+    fontSize: moderateScale(14),
+    fontFamily: 'Proxima Nova Bold',
+  },
+
+
+  // Game Page
   navHeader: {
     flex: 1,
     flexBasis: 'auto',
@@ -156,49 +226,119 @@ export const Styles = ScaledSheet.create({
     minHeight: 50,
   },
   gameBox: {
+    flex: 1,
     minHeight: CARD_HEIGHT,
-    height: 'auto',
     width: CARD_WIDTH,
     borderColor: Colors.tintColor,
+    backgroundColor: Colors.white,
     borderWidth: 1,
     borderRadius: defaults.borderRadius,
     fontSize: moderateScale(22),
-    padding: 20
+    padding: 20,
+    shadowColor: Colors.black,
+    shadowRadius: 2,
+    shadowOpacity: 0.5,
+    shadowOffset: {
+      width: 0,
+      height: 2
+    },
   },
-  result: {
-    textAlign: 'left',
-    fontWeight: '400',
-    fontFamily: 'Proxima Nova',
+  // Results Page
+  resultsNav: {
+    flex: 1,
+    position: 'relative',
+    top: 35,
+    marginTop: 45,
     width: '100%',
   },
-  card: {
-    height: CARD_HEIGHT,
-    width: CARD_WIDTH,
-    position: "absolute",
-    padding: 0,
-    top: 0,
-    left: 0,
-    borderRadius: defaults.borderRadius,
-    backgroundColor: Colors.white
-  },
-  headerContainer: {
+  resultsContainer: {
     flex: 1,
-    justifyContent: 'flex-start',
-    alignContent: 'center',
-    alignItems: 'center',
-    paddingVertical: 10,
-    borderColor: 'red',
-    borderWidth: 1,
+    flexGrow: 1,
+    flexDirection: 'column',
+    width: '100%',
+    marginVertical: 15,
+    paddingHorizontal: 20,
   },
-  headerText: {
+  resultsHeader: {
     flex: 1,
-    color: Colors.black,
-    fontSize: moderateScale(24),
-    fontFamily: 'Proxima Nova Bold',
+    flexShrink: 0,
+    flexGrow: 1,
+    flexDirection: 'column',
     textAlign: 'center',
-    width: '80%',
-    minHeight: 50,
+    maxHeight: 100,
   },
+  resultsPanel: {
+    flex: 1,
+    textAlign: 'left',
+    marginTop: 15,
+    minHeight: 1,
+  },
+  result: {
+    flex: 1,
+    flexDirection: 'column',
+    textAlign: 'left',
+    width: '100%',
+    paddingVertical: 10,
+    borderRadius: defaults.borderRadius,
+    marginBottom: 8,
+    padding: 10,
+    minHeight: 120,
+    shadowColor: Colors.black,
+    shadowRadius: 2,
+    shadowOpacity: 0.5,
+    shadowOffset: {
+      width: 0,
+      height: 2
+    },
+  },
+  resultIcon: {
+    flex: 1,
+    flexBasis: '20%'
+  },
+  resultQuestionContainer: {
+   flex: 1,
+   flexBasis: '80%',
+   paddingTop: 5,
+  },
+  resultTextContainer: {
+    flex: 1,
+    textAlign: 'left',
+    width: '100%',
+    minHeight: 1,
+    marginTop: 5,
+  },
+  resultCategoryContainer: {
+    flex: 0,
+    height: 22,
+    fontWeight: 'bold',
+    fontSize: moderateScale(14)
+  },
+  resultCategoryTextSmall: {
+    flex: 1,
+    flexGrow: 1,
+    flexShrink: 1,
+    fontWeight: 'normal',
+    fontFamily: 'Proxima Nova',
+    fontSize: moderateScale(18),
+  },
+  resultText: {
+    flex: 1,
+    fontWeight: 'normal',
+    fontFamily: 'Proxima Nova Bold',
+    fontSize: moderateScale(22),
+  },
+  resultTextSmall: {
+    flex: 1,
+    fontWeight: '400',
+    fontFamily: 'Proxima Nova',
+    fontSize: moderateScale(12),
+  },
+  resultsButtonConainer: {
+    flex: 1,
+    marginTop: 20,
+    paddingTop: 10,
+  },
+  // Layout helpers
   centerAll: {
     justifyContent: 'center',
     alignItems: 'center',
@@ -209,7 +349,7 @@ export const Styles = ScaledSheet.create({
   },
   underline: {
     borderBottomWidth: StyleSheet.hairlineWidth,
-    borderBottomColor: Colors.white,
+    borderBottomColor: Colors.mediumGray,
   },
   padded: {
     padding: defaults.padding
@@ -242,54 +382,5 @@ export const Styles = ScaledSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     width: '100%',
-
-  },
-  topNav: {
-    flex: 1,
-    justifyContent: 'space-between',
-    maxHeight: 50,
-    paddingHorizontal: defaults.paddingHorizontal,
-    zIndex:1,
-    width: '100%',
-    color: Colors.black,
-  },
-  swipeButton: {
-    padding: 20,
-    marginHorizontal: 14,
-    borderRadius: 50,
-    shadowColor: Colors.black,
-    shadowRadius: 2,
-    shadowOpacity: 0.5,
-    shadowOffset: {
-       width: 0,
-       height: 0
-    },
-    backgroundColor: "white"
-   },
-   phoneInputContainer: {
-    flexDirection: 'row',
-    borderColor: 'gray',
-    borderWidth: 0,
-    borderBottomWidth: 1,
-    alignItems: 'flex-end',
-    width: '100%',
-  },
-  textInput: {
-    color: Colors.white,
-    fontSize: moderateScale(18),
-    width: 200,
-    textAlign: 'center',
-    borderColor: Colors.mediumGray,
-    borderBottomWidth: 1,
-  },
-  videoPlayIcon: {
-    position: 'absolute',
-    opacity: 0.8,
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    justifyContent: 'center',
-    alignItems: 'center',
   },
 });
