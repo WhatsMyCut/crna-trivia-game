@@ -24,11 +24,11 @@ For more information, visit the [Expo](http://expo.io) website.
 
 ## Developer Notes
 
-The codebase utilizes techniques and best practices I have been using most recently, and over the course of my extensive career.
+The codebase utilizes techniques and best practices I have been using most recently, and over the course of my career.
 
-While experimenting, it was discovered the API will take `easy | medium | hard` for the difficulty passed in the query.
+The `LandingPage` wireframe asks, 'Can you score 100%' but the `ResultsPage` wireframe only showed `[Correct] / [Total]`, so a percentage was added to display `[Correct] / [Total] [Percentage]%`
 
-Things to improve: add slider to set difficulty level.
+While experimenting, it was discovered the API will take `easy | medium | hard` for the difficulty passed in the query. Things to improve: add slider to set difficulty level.
 
 ### Local Data Store
 
