@@ -2,6 +2,11 @@ import React from 'react';
 import { MaterialIcons, FontAwesome5 } from '@expo/vector-icons'
 import { View, Text } from 'react-native';
 import Colors from '../assets/styles/Colors';
+import { Styles } from '../assets/styles/Styles';
+const styles = { ...Styles, ...{
+
+}};
+
 
 export interface IQuestion {
   category: string;
@@ -17,7 +22,17 @@ const IconTypes = {
   "History": {
     iconSet: 'fa',
     iconName: 'history',
-    iconColor: 'pink'
+    iconColor: 'gold'
+  },
+  "Entertainment: Board Games":{
+    iconSet: 'fa',
+    iconName: 'dice-d20',
+    iconColor: 'violet'
+  },
+  "Entertainment: Cartoon & Animations": {
+    iconSet: 'fa',
+    iconName: 'mask',
+    iconColor: 'teal'
   },
   "Entertainment: Comics": {
     iconSet: 'fa',
@@ -26,7 +41,7 @@ const IconTypes = {
   },
   "Entertainment: Music": {
     iconSet: 'fa',
-    iconName: 'guitar',
+    iconName: 'compact-disc',
     iconColor: 'lightblue'
   },
   "Entertainment: Film": {
@@ -37,6 +52,11 @@ const IconTypes = {
   "Entertainment: Japanese": {
     iconSet: 'fa',
     iconName: 'yen-sign',
+    iconColor: 'red'
+  },
+  "Entertainment: Japanese Anime & Manga":{
+    iconSet: 'fa',
+    iconName: 'user-ninja',
     iconColor: 'red'
   },
   "Entertainment: Video Games": {
@@ -52,7 +72,7 @@ const IconTypes = {
   "Science: Computers": {
     iconSet: 'fa',
     iconName: 'laptop-code',
-    iconColor: 'lightgrey'
+    iconColor: '#ccc'
   },
   "Science: Gadgets": {
     iconSet: 'fa',
@@ -72,17 +92,22 @@ const IconTypes = {
   "Animals": {
     iconSet: 'fa',
     iconName: 'paw',
-    iconColor: 'lightbrown'
+    iconColor: 'brown'
   },
   "Art": {
     iconSet: 'fa',
     iconName: 'palette',
-    iconColor: 'lightbrown'
+    iconColor: 'purple'
+  },
+  "Celebrities": {
+    iconSet: 'fa',
+    iconName: 'hand-spock',
+    iconColor: 'blue'
   },
   "Sports": {
     iconSet: 'fa',
     iconName: 'futbol',
-    iconColor: 'chartreusse'
+    iconColor: 'green'
   },
   "Mythology": {
     iconSet: 'fa',
@@ -107,27 +132,23 @@ const IconTypes = {
   "Vehicles": {
     iconSet: 'fa',
     iconName: 'car',
-    iconColor: 'red'
+    iconColor: 'black'
   },
 }
 
 export function renderCategoryIcon(category: string): JSX.Element {
   const iconInfo = IconTypes[category];
-  console.log('iconInfo', iconInfo);
+  console.log('iconInfo', category, iconInfo);
   if (iconInfo) {
     const { iconSet, iconName, iconColor } = iconInfo
     if (iconSet === 'fa') {
       return (
-        <View style={{
-          backgroundColor: iconColor,
+        <View style={[styles.iconContainer, {
           borderRadius: '50%',
-          height: 50,
-          width: 50,
-          padding: 3,
-          marginRight: 10,
-        }}
+          backgroundColor: iconColor,
+        }]}
         >
-          <Text style={{ padding:8 }}><FontAwesome5 name={iconName} size={22} color={Colors.white}/></Text>
+          <Text style={[styles.smallTextShadow, { padding:8, textAlign: 'center', textAlignVertical: 'center' }]}><FontAwesome5 name={iconName} size={22} color={Colors.white}/></Text>
         </View>
       );
     }
