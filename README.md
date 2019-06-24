@@ -36,6 +36,8 @@ The total hours for this project:
 - Sunday 6/23: 10hrs - UI Styling, Modal, Icons, Fonts, Gradients
 - Monday 6/24: 2 hrs - Documentation
 
+Given the opportunity, and more time, I would have added [Enzyme](https://airbnb.io/enzyme/docs/guides/react-native.html) testing suite, and Google Analytics.
+
 ### Local Data Store
 
 The codebase uses the `AsyncStorage` class from the `react-native` library. Data is only retrived from the API server once per game, and is held in local storage for navigating between the `GamePage` and `ResultsPage` with the `given_answer` property value set in the `GamePage` state.
