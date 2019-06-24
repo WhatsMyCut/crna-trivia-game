@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, NativeSyntheticEvent, NativeTouchEvent, ActivityIndicator } from 'react-native';
+import { Text, ActivityIndicator } from 'react-native';
 import {
   SafeAreaView,
   View,
@@ -7,8 +7,6 @@ import {
 } from 'react-native';
 import { AllHtmlEntities as entities } from 'html-entities';
 import { Styles } from '../../assets/styles/Styles';
-//import { StoreConsumer } from '../../store/Store';
-//import Home from './Home';
 import navigationService from '../../navigation/navigationService';
 import GameNav from '../game-nav';
 import Colors from '../../assets/styles/Colors';
@@ -158,8 +156,8 @@ export default class GamePage extends Component<IProps, IState> {
               onPress={() => this.onPressAnswerFalse()}
               title="False"
               color={Colors.white}
-              />
-            </View>
+            />
+          </View>
         </View>
       )
     }
