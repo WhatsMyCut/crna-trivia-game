@@ -13,7 +13,7 @@ import navigationService from '../../navigation/navigationService';
 import GameNav from '../game-nav';
 import Colors from '../../assets/styles/Colors';
 import { StoreData, RemoveData } from '../../store/AsyncStore';
-import { IQuestion } from '../../models/IQuestion';
+import { IQuestion, renderCategoryIcon } from '../../models/IQuestion';
 const styles = { ...Styles, ...{
 
 }};
@@ -121,7 +121,7 @@ export default class GamePage extends Component<IProps, IState> {
 
   render() {
     const {x, y, isLoaded} = this.state;
-    let content, category, controls;
+    let content, category, controls, icon;
     if (!isLoaded) {
       category = "Loading...";
       content = (<ActivityIndicator size="large" color="#0000ff" />);
@@ -137,6 +137,7 @@ export default class GamePage extends Component<IProps, IState> {
       const { questions } = this.state;
       const currQ = questions[x];
       category = currQ.category;
+      icon = renderCategoryIcon(category);
       const qText = entities.decode(currQ.question);
       content = (
         <View style={[styles.container, styles.componentContainer, styles.centerAll]}>
@@ -166,9 +167,12 @@ export default class GamePage extends Component<IProps, IState> {
       <SafeAreaView style={[styles.container, styles.coverScreen, styles.centerAll]}>
         <GameNav navigation={this.props.navigation} />
         <View style={[styles.safeArea, styles.container]}>
-          <Text style={[styles.title, styles.questionTitle]}>
-            { category }
-          </Text>
+          <View style={[styles.componentContainer]}>
+            {icon}
+            <Text style={[styles.title, styles.questionTitle]}>
+              { category }
+            </Text>
+          </View>
           <View style={[styles.gameBox, styles.container, styles.centerText, { paddingHorizontal: 20, }]}>
             { content }
             { controls }
