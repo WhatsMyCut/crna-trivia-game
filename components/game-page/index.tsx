@@ -123,7 +123,11 @@ export default class GamePage extends Component<IProps, IState> {
     let content, category, controls, icon, bgColor;
     if (!isLoaded) {
       category = "Loading...";
-      content = (<ActivityIndicator size="large" color="#0000ff" />);
+      content = (
+        <View style={[styles.container, styles.componentContainer, styles.centerAll]}>
+          <ActivityIndicator size="large" color="#0000ff" />
+        </View>
+      );
     } else if (x === y) {
       category = "Calculating Results"
       content = (
