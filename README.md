@@ -106,4 +106,4 @@ The project includes a placeholder for Authorization / login support
 
 ## Prerequisutes
 
-[Node](), [Expo CLI]()
+This codebase was written on MacOS and uses [Node](), [Expo CLI]()
