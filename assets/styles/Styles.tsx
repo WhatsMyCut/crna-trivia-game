@@ -199,16 +199,17 @@ export const Styles = ScaledSheet.create({
     backgroundColor: Colors.white,
     borderColor: Colors.mediumGray,
     shadowColor: Colors.black,
-    shadowRadius: 2,
+    shadowRadius: 3,
     shadowOpacity: 0.8,
     shadowOffset: {
-      width: 1,
-      height: 1
+      width: 0,
+      height: 2
     },
   },
 
   modalText: {
-    padding: 15,
+    padding: 8,
+    paddingLeft: 5,
     color: Colors.black,
     fontSize: moderateScale(20),
     fontFamily: 'Proxima Nova Bold',
@@ -219,6 +220,7 @@ export const Styles = ScaledSheet.create({
     color: Colors.black,
     fontSize: moderateScale(14),
     fontFamily: 'Proxima Nova Bold',
+    textAlign: 'center',
   },
 
 
@@ -228,7 +230,7 @@ export const Styles = ScaledSheet.create({
     flexBasis: 'auto',
     alignItems: 'center',
     justifyContent: 'center',
-    top: -15,
+    top: -12,
   },
   navHeaderText: {
     flex: 1,
@@ -241,7 +243,7 @@ export const Styles = ScaledSheet.create({
   },
   gameBox: {
     flex: 1,
-    minHeight: CARD_HEIGHT / 2,
+    minHeight: CARD_HEIGHT / 3,
     width: CARD_WIDTH,
     backgroundColor: Colors.white,
     borderWidth: 2,

@@ -184,6 +184,7 @@ export default class GamePage extends Component<IProps, IState> {
             {
               padding: 0,
               marginTop:10,
+              borderColor: Colors.darkGray,
             }]}
           >
             <LinearGradient
