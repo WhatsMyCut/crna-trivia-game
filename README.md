@@ -24,6 +24,12 @@ For more information, visit the [Expo](http://expo.io) website.
 
 ## Developer Notes
 
+The codebase utilizes techniques and best practices I have been using most recently, and over the course of my extensive career.
+
+While experimenting, it was discovered the API will take `easy | medium | hard` for the difficulty passed in the query.
+
+Things to improve: add slider to set difficulty level.
+
 ### Local Data Store
 
 The codebase uses the `AsyncStorage` class from the `react-native` library. Data is only retrived from the API server once per game, and is held in local storage for navigating between the `GamePage` and `ResultsPage` with the `given_answer` property value set in the `GamePage` state.
