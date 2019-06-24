@@ -18,7 +18,7 @@ export interface IQuestion {
   given_answer?: string;
 }
 
-const IconTypes = {
+export const IconTypes = {
   "History": {
     iconSet: 'fa',
     iconName: 'history',

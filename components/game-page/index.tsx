@@ -11,7 +11,8 @@ import navigationService from '../../navigation/navigationService';
 import GameNav from '../game-nav';
 import Colors from '../../assets/styles/Colors';
 import { StoreData, RemoveData } from '../../store/AsyncStore';
-import { IQuestion, renderCategoryIcon } from '../../models/IQuestion';
+import { IQuestion, renderCategoryIcon, IconTypes } from '../../models/IQuestion';
+import { LinearGradient } from 'expo-linear-gradient';
 const styles = { ...Styles, ...{
 
 }};
@@ -119,7 +120,7 @@ export default class GamePage extends Component<IProps, IState> {
 
   render() {
     const {x, y, isLoaded} = this.state;
-    let content, category, controls, icon;
+    let content, category, controls, icon, bgColor;
     if (!isLoaded) {
       category = "Loading...";
       content = (<ActivityIndicator size="large" color="#0000ff" />);
@@ -137,6 +138,7 @@ export default class GamePage extends Component<IProps, IState> {
       category = currQ.category;
       icon = renderCategoryIcon(category);
       const qText = entities.decode(currQ.question);
+      bgColor = IconTypes[category].iconColor;
       content = (
         <View style={[styles.container, styles.componentContainer, styles.centerAll]}>
           <Text style={[styles.headerText]}>{qText}</Text>
@@ -171,9 +173,23 @@ export default class GamePage extends Component<IProps, IState> {
               { category }
             </Text>
           </View>
-          <View style={[styles.gameBox, styles.container, styles.centerText, { paddingHorizontal: 20, }]}>
+          <View style={[
+            styles.gameBox,
+            styles.container,
+            styles.centerText,
+            {
+              padding: 0,
+              marginTop:10,
+            }]}
+          >
+            <LinearGradient
+              colors={['rgba(255,255,255,0)', bgColor]}
+              locations={[1, 0]}
+              style={[styles.linearGradientBox, { paddingHorizontal: 20, height: '100%', width: '100%'}]}
+            >
             { content }
             { controls }
+            </LinearGradient>
           </View>
           <Text style={[styles.callToAction]}>
             {x+1} of {y}

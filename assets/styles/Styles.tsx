@@ -128,7 +128,14 @@ export const Styles = ScaledSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     marginVertical: 20,
-    paddingHorizontal: 10
+    paddingHorizontal: 10,
+    shadowColor: Colors.black,
+    shadowRadius: 2,
+    shadowOpacity: 0.8,
+    shadowOffset: {
+      width: 1,
+      height: 1
+    },
   },
 
   buttonContainerFalse: {
@@ -139,7 +146,14 @@ export const Styles = ScaledSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     marginVertical: 20,
-    paddingHorizontal: 10
+    paddingHorizontal: 10,
+    shadowColor: Colors.black,
+    shadowRadius: 2,
+    shadowOpacity: 0.8,
+    shadowOffset: {
+      width: 1,
+      height: 1
+    },
   },
 
   coverScreen: {
@@ -227,11 +241,10 @@ export const Styles = ScaledSheet.create({
   },
   gameBox: {
     flex: 1,
-    minHeight: CARD_HEIGHT,
+    minHeight: CARD_HEIGHT / 2,
     width: CARD_WIDTH,
-    borderColor: Colors.tintColor,
     backgroundColor: Colors.white,
-    borderWidth: 1,
+    borderWidth: 2,
     borderRadius: defaults.borderRadius,
     fontSize: moderateScale(22),
     padding: 20,
@@ -369,7 +382,6 @@ export const Styles = ScaledSheet.create({
     flex: 1,
     borderRadius: defaults.borderRadius,
     elevation: 1,
-    marginVertical: 5,
     shadowColor: Colors.black,
     shadowRadius: 2,
     shadowOpacity: 0.5,
